@@ -1,4 +1,3 @@
-from bean.CheckResponseResult import CheckResponseResult
 from config import GlobalConfig
 from logger.logge import logger
 
@@ -45,9 +44,4 @@ class TestCaseAspect:
             # return func(*args, **kwargs)
         return testCaseHandler
 
-if __name__ == '__main__':
-    i = [1,2,3,4]
-    i.reverse()
-    print(i)
-    i.reverse()
-    print(i)
+

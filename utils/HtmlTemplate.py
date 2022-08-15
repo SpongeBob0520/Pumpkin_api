@@ -1,13 +1,12 @@
-import time
-
 from bean.CheckResponseResult import CheckResponseResult
 from config.JarProjectUtil import JarProjectUtil
+from aspect.SeedSomethingToDingtalk import send_Something_to_dingTalk
 
 
 class HtmlTemplate:
-
     def generateHtmlReport(self,checkResponseResult: CheckResponseResult = None) -> str:
         # 文件名
+        # seedToDingtalk = send_Something_to_dingTalk()
         fileName = 'index_'+str(checkResponseResult.get_millis())+".html"
         # 项目根目录
         path = JarProjectUtil.project_root_path()
@@ -18,6 +17,7 @@ class HtmlTemplate:
         f = open(address,"a")
         f.write(modulInfo)
         f.close()
+        send_Something_to_dingTalk().seedText(address)
         return address
 
     def initHtmlModul(self,checkResponseResult: CheckResponseResult = None) -> str:
@@ -139,9 +139,9 @@ class HtmlTemplate:
             sb += str(1)
             sb += "</td>";
 
-            sb += "<td>";
-            sb += (checkResponseResult.get_msg())
-            sb += "</td>"
+            # sb += "<td>";
+            # sb += (checkResponseResult.get_msg())
+            # sb += "</td>"
 
             sb += "<td>"
             sb += (str(checkResponseResult.get_result()))
@@ -164,11 +164,3 @@ class HtmlTemplate:
                "</html>")
         return sb
 
-
-if __name__ == '__main__':
-    result = CheckResponseResult()
-    result.set_result(False)
-    result.set_msg("hhhh")
-    result.set_millis(int(round(time.time()*1000)))
-    var = HtmlTemplate.generateHtmlReport(result)
-    print(var)

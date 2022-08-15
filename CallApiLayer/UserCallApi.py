@@ -12,7 +12,7 @@ class UserCallApi:
                                 reauestType='GET')
     def addFeedback(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpPost(urlParams.url, urlParams, data=urlParams.get_param(), headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpPost(urlParams.url, urlParams, data=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn
 
     @CallApiAspect.aroundHandle(CallApiAspect(),
@@ -20,7 +20,7 @@ class UserCallApi:
                                 reauestType='GET')
     def userPraiseStatus(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn
 
     @CallApiAspect.aroundHandle(CallApiAspect(),
@@ -28,7 +28,7 @@ class UserCallApi:
                                 reauestType='GET')
     def userCollectionStatus(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn
 
     @CallApiAspect.aroundHandle(CallApiAspect(),
@@ -36,7 +36,7 @@ class UserCallApi:
                                 reauestType='GET')
     def userFanList(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, headers=urlParams.headMap, verify=False)
         return infReturn
 
     @CallApiAspect.aroundHandle(CallApiAspect(),
@@ -44,7 +44,7 @@ class UserCallApi:
                                 reauestType='GET')
     def userSecretConfig(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, headers=urlParams.headMap, verify=False)
         return infReturn
 
     @CallApiAspect.aroundHandle(CallApiAspect(),
@@ -52,5 +52,5 @@ class UserCallApi:
                                 reauestType='POST')
     def followAndCancel(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpPost(urlParams.url, urlParams, data=urlParams.get_param(), headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpPost(urlParams.url, urlParams, data=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn

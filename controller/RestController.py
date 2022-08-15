@@ -1,5 +1,4 @@
 from flask import request
-from CallApiLayer.SearchCallApi import SearchCallApi
 from aspect.ControllerAspect import ControllerAspect
 from config import ReadConfigFile, GlobalConfig
 from config.FlaskConfig import flask
@@ -67,7 +66,7 @@ def postMethod():
 # 更新域名
 def updataEnvInfoConfig(envPrifx: str = None, phone=None):
     if envPrifx is not None and envPrifx != '':
-        # 项目中配置的默认就是bea环境数据，如果不是beta环境就为测试环境将域名改成测试环境，线上环境不能使用，需要特殊配置，如有需要自己改这里的代码
+        # 项目中配置的默认就是beta环境数据，如果不是beta环境就为测试环境将域名改成测试环境，线上环境不能使用，需要特殊配置，如有需要自己改这里的代码
         if envPrifx is not None and 'beat' not in envPrifx:
             headerMap = ReadConfigFile.classNameAndFieldName('header')
             headerMap['envPrifx'] = envPrifx
@@ -83,9 +82,10 @@ def updataEnvInfoConfig(envPrifx: str = None, phone=None):
 @flask.route("/searchReport", methods=['GET', 'POST'])
 def searchReportByMillers():
     millis = request.args.get('millis')
-    print(millis)
     report = DatabaseOperation().searchReport(millis)
+    print(report)
     return ResponseUtils.responseModelAndView(report)
 
 
 flask.run()
+

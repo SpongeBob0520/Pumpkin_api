@@ -9,7 +9,7 @@ class SystemInfoTestCase:
     @TestCaseAspect.testCaseListen
     def testSystemInfo(self):
         params = UrlParams()
-        p = {'page_num':1,'page_size':1,'user_id':GlobalConfig.getGlobalPumkinUserId()}
+        p = {'page_num':1,'page_size':1,'user_id': GlobalConfig.getGlobalPumkinUserId()}
         params.set_param(p)
         coment_list = SystemInfoCallApi().praiseComentList(params)
         p = {'platform':'APH', 'user_id': GlobalConfig.getGlobalPumkinUserId()}

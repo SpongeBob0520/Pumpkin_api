@@ -12,7 +12,7 @@ class MovieCallApi:
                                 reauestType='GET')
     def drmPlayMovieUrl(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, headers=urlParams.headMap, verify=False)
         return infReturn
 
     # 类似影视
@@ -21,7 +21,7 @@ class MovieCallApi:
                                 reauestType='GET')
     def movieSimilerMovie(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams,params=urlParams.get_param(), headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn
 
     # 更多预告片
@@ -30,7 +30,7 @@ class MovieCallApi:
                                 reauestType='GET')
     def moreSearchReservation(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams,params=urlParams.get_param(), headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn
 
     # 预约预告片/取消预告片
@@ -39,7 +39,7 @@ class MovieCallApi:
                                 reauestType='GET')
     def addOrDelReservation(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams,params=urlParams.get_param(), headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn
 
     # 用户观影历史
@@ -48,7 +48,7 @@ class MovieCallApi:
                                 reauestType='GET')
     def userMovieRecord(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams,params=urlParams.get_param(), headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn
 
     # 用户收藏
@@ -57,7 +57,7 @@ class MovieCallApi:
                                 reauestType='GET')
     def userMovieFavortie(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams,params=urlParams.get_param(), headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn
 
     # 用户喜欢影视
@@ -66,7 +66,7 @@ class MovieCallApi:
                                 reauestType='GET')
     def likeMovie(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(),headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn
 
     # 根据电影id获取电影信息
@@ -75,7 +75,7 @@ class MovieCallApi:
                                 reauestType='GET')
     def getMovieInfoById(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, headers=urlParams.headMap, verify=False)
         return infReturn
 
     @CallApiAspect.aroundHandle(CallApiAspect(),
@@ -83,7 +83,7 @@ class MovieCallApi:
                                 reauestType='GET')
     def movietrailerList(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
-        infReturn = HttpUtils.httpGet(urlParams.url, urlParams,params=urlParams.get_param(), headers=urlParams.headMap,verify=False)
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn
 
     @CallApiAspect.aroundHandle(CallApiAspect(),

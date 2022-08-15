@@ -31,7 +31,7 @@ class HallCallApi:
     def pumkinOnlineHall(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
         infReturn = HttpUtils.httpGet(urlParams.url, urlParams, headers=urlParams.headMap,
-                                       verify=False)
+                                      verify=False)
         return infReturn
 
     @CallApiAspect.aroundHandle(CallApiAspect(),

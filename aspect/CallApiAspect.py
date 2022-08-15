@@ -1,8 +1,6 @@
 # 获取签名的装饰器(方法) servletPath接口地址v5.0之后的路径,reauestType接口的请求类型 --装饰器类型的方法
-import json
-import requests
 from bean.UrlParams import UrlParams
-from config import GlobalConfig, ReadConfigFile
+from config import ReadConfigFile
 from config.GlobalConfig import setGlobalPumkinUserId
 from logger.logge import logger
 

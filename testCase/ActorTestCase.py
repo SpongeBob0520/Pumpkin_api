@@ -15,7 +15,7 @@ class ActorTestCase:
         p = {'movie_id': '60358','page_num':'1','page_size':1}
         params.set_param(p)
         actor_id = ActorCallApi().actorListByMovieId(params)
-        JsonUtils.json_data_check(actor_id,'actorField')
+        JsonUtils.json_data_check(actor_id, 'actorField')
         val = json.loads(actor_id)
         content_ = val['content']
         data_ = content_['data']

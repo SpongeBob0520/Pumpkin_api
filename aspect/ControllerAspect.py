@@ -1,5 +1,5 @@
 from bean.CheckResponseResult import CheckResponseResult
-from config import FlaskConfig, GlobalConfig
+from config import GlobalConfig
 from dao.DatabaseOperation import DatabaseOperation
 from logger.logge import logger
 from utils import ResponseUtils
@@ -21,9 +21,9 @@ class ControllerAspect:
                     return ResponseUtils.responseModelAndView(result)
                 finally:
                     # 数据库插入
-                    # DatabaseOperation().batchInsertDB(GlobalConfig.getReportClassInfo())
+                    DatabaseOperation().batchInsertDB(GlobalConfig.getReportClassInfoCopy())
                     # 报告生成为html文件
-                    # HtmlTemplate().generateHtmlReport(GlobalConfig.getReportClassInfo())
+                    HtmlTemplate().generateHtmlReport(GlobalConfig.getReportClassInfoCopy())
                     # 发送邮件的方法 参考：https://www.cnblogs.com/lovealways/p/6701662.html
                     # 最后重置报告数据
                     GlobalConfig.setRepotClassInfo(CheckResponseResult())

@@ -1,11 +1,9 @@
 # -*-coding:utf-8-*-
 import json
-import time
 
 import pymysql
 
 from bean.CheckResponseResult import CheckResponseResult
-from bean.InfCallSequence import InfCallSequence
 from config import ReadConfigFile
 from logger.logge import logger
 
@@ -29,11 +27,12 @@ class DatabaseOperation:
             paramList = [checkResponseResult.get_methodName(), checkResponseResult.get_msg(),
                          checkResponseResult.get_result(), checkResponseResult.get_expand(),
                          checkResponseResult.get_millis()]
+            sequence = checkResponseResult.get_infCallSequence()
+            print(checkResponseResult, paramList, sequence)
             sql = 'insert into check_response_result (methodName,msg,result,expand,millis) values (%s,%s,%s,%s,%s)'
             self.cursors.execute(sql, paramList)
             self.connect.commit()
             # 副结果报告数据准备插入
-            sequence = checkResponseResult.get_infCallSequence()
             deputyReportList = []
             for interInf in sequence:
                 par = (interInf.interfaceName, interInf.infRequestHeader, interInf.infRequestParam, interInf.infStart,
@@ -53,13 +52,14 @@ class DatabaseOperation:
     def searchReport(self, millis: str) -> json:
         fetchall = None
         try:
+            print(millis)
             # 查询主报告
             sql = 'SELECT * FROM check_response_result WHERE millis=%s'
             self.cursors.execute(sql, millis)
             self.connect.commit()
             fetchall = self.cursors.fetchall()[0]
             # 查询副报告
-            sql = 'SELECT * from inf_call_sequence WHERE millis = %s'
+            sql = 'SELECT * from inf_call_sequence WHERE millis=%s'
             self.cursors.execute(sql, millis)
             self.connect.commit()
             cursors_fetchall = self.cursors.fetchall()

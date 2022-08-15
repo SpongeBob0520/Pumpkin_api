@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 from flask_apscheduler import APScheduler
 from aspect.StartInitData import StartInitData
 from config.SchedulerConfig import SchedulerConfig

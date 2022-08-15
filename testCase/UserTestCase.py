@@ -46,7 +46,7 @@ class UserTestCase:
     def testFollowAndCancel(self):
         params = UrlParams()
         # 取消关注
-        p = {"follow_user_id": GlobalConfig.getGlobalPumkinUserId(), "be_followed_user_id": "6479","type":"2"}
+        p = {"follow_user_id": GlobalConfig.getGlobalPumkinUserId(), "be_followed_user_id": "6479", "type": "2"}
         params.set_param(p)
         cancel = UserCallApi().followAndCancel(params)
         # 关注

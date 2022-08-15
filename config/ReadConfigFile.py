@@ -1,8 +1,5 @@
-import re
-from bean.Application import Application
 from config.ConfigParserUtils import ConfigParserUtils
 from config.JarProjectUtil import JarProjectUtil
-from logger.logge import logger
 
 
 def setGlobalMethodContext():

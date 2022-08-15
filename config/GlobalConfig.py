@@ -1,4 +1,5 @@
 # 设置Token
+import copy
 import time
 from requests import Response
 from bean.CheckResponseResult import CheckResponseResult
@@ -43,8 +44,9 @@ def getGlobalPumPkinTokenInfoMap():
 
 # 设置报告基础类
 def setRepotClassInfo(report: CheckResponseResult = None):
-    global checkResponseResult
+    global checkResponseResult, checkResponseResultCopy
     checkResponseResult = report
+    checkResponseResultCopy = copy.copy(checkResponseResult)
 
 
 # 获取报告基础类信息
@@ -61,8 +63,11 @@ def getReportClassInfo():
         getReport = globals().get('checkResponseResult')
         if getReport.millis is None:
             getReport.millis = int(round(time.time() * 1000))
-
     return checkResponseResult
+
+
+def getReportClassInfoCopy():
+    return checkResponseResultCopy
 
 
 # 接口返回结果响应信息存储

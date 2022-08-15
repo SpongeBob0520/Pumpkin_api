@@ -1,3 +1,4 @@
+import copy
 import json
 
 from bean.CheckResponseResult import CheckResponseResult
@@ -19,6 +20,7 @@ def change_type(byte):
 
 
 def reportToStrModelAndView(checkResponseResult: CheckResponseResult):
+    checkResponseResultCopy = copy.copy(checkResponseResult)
     sequence = checkResponseResult.get_infCallSequence()
     checkResponseResult.set_infCallSequence(None)
 

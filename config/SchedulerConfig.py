@@ -1,8 +1,4 @@
-from apscheduler.schedulers.background import BackgroundScheduler
-from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
-
 # 任务配置类
-from config import GlobalConfig
 from config.GlobalConfig import setGlobalPumPkinToken
 
 # 定时任务配置

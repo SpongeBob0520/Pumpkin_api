@@ -1,6 +1,3 @@
-from bean.InfCallSequence import InfCallSequence
-
-
 class CheckResponseResult:
     def __init__(self):
         self.id = None
