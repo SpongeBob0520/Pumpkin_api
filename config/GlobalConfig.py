@@ -13,7 +13,7 @@ def setGlobalPumkinUserId(id=None):
 # 设置用户id的值
 def getGlobalPumkinUserId():
     if 'userId' not in globals():
-        setGlobalPumkinUserId('4017434')
+        setGlobalPumkinUserId('34427118')
     return userId
 
 

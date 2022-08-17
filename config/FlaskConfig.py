@@ -15,3 +15,4 @@ scheduler.init_app(flask)
 scheduler.start()
 StartInitData().loadConfig()
 flask.config["JSON_AS_ASCII"] = False
+print(flask.config.get("JOBS"))

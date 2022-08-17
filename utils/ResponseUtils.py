@@ -20,7 +20,7 @@ def change_type(byte):
 
 
 def reportToStrModelAndView(checkResponseResult: CheckResponseResult):
-    checkResponseResultCopy = copy.copy(checkResponseResult)
+    # checkResponseResultCopy = copy.copy(checkResponseResult)
     sequence = checkResponseResult.get_infCallSequence()
     checkResponseResult.set_infCallSequence(None)
 
@@ -30,6 +30,7 @@ def reportToStrModelAndView(checkResponseResult: CheckResponseResult):
         for inf in sequence:
             viceReport.append(inf.__dict__)
         masterReport['resultInfList'] = viceReport
+
     # dict__ = checkResponseResult.__dict__
     # print(dict__)
     # sequence___dict__ = sequence.__dict__

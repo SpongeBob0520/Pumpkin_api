@@ -10,7 +10,7 @@ class SchedulerConfig(object):
             'func': setGlobalPumPkinToken,
             'args': None,
             'trigger': 'interval',
-            'seconds': 60*30  # 本任务为每3分钟执行一次
+            'seconds': 60*60*4  # 本任务为每4小时执行一次
         },
 
     ]

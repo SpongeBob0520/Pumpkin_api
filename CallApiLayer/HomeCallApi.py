@@ -38,7 +38,7 @@ class HomeCallApi:
 
     # 多次请求接口返回无需刷新
     @CallApiAspect.aroundHandle(CallApiAspect(), servletPath=ReadConfigFile.classNameAndFieldName('home', 'seriousHomInfo'), reauestType='GET')
-    def doubleRequestCheck(self,urlParams: UrlParams = None):
+    def doubleRequestCheck(self, urlParams: UrlParams = None):
         logger.info("开始调用" + str(urlParams.url))
         # 第一次请求会给标准数据
         HttpUtils.httpGet(urlParams.url, urlParams, headers=urlParams.headMap)

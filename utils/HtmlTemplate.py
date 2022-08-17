@@ -1,6 +1,7 @@
 from bean.CheckResponseResult import CheckResponseResult
-from config.JarProjectUtil import JarProjectUtil
+# from config.JarProjectUtil import JarProjectUtil
 from aspect.SeedSomethingToDingtalk import send_Something_to_dingTalk
+from config import ReadConfigFile
 
 
 class HtmlTemplate:
@@ -8,24 +9,27 @@ class HtmlTemplate:
         # 文件名
         # seedToDingtalk = send_Something_to_dingTalk()
         fileName = 'index_'+str(checkResponseResult.get_millis())+".html"
-        # 项目根目录
-        path = JarProjectUtil.project_root_path()
+        # 项目根目录,这是原来的逻辑，吧html文件保存到项目地址下，但是这样不行，改成了nginx静态文件地址
+        # path = JarProjectUtil.project_root_path()
+        path = ReadConfigFile.classNameAndFieldName('htmlsavepath', 'savePath')
+        # 分享地址
+        sharePath = ReadConfigFile.classNameAndFieldName('htmlsavepath', 'sharePath')
         # 获取Html和结果的组装数据
         modulInfo = HtmlTemplate().initHtmlModul(checkResponseResult)
         # 组装地址
         address = path+fileName
-        f = open(address,"a")
+        f = open(address, "a")
         f.write(modulInfo)
         f.close()
-        send_Something_to_dingTalk().seedText(address)
+        send_Something_to_dingTalk().seedText(sharePath+fileName)
         return address
 
-    def initHtmlModul(self,checkResponseResult: CheckResponseResult = None) -> str:
+    def initHtmlModul(self, checkResponseResult: CheckResponseResult = None) -> str:
         sb = ""
         sb += ("<!doctype html>\n" +
                "<html lang=\"zh-CN\">\n" +
                "  <head>\n" +
-               "    <meta charset=\"utf-8\">\n" +
+               "    <meta http-equiv=\"content-Type\" content=\"text/html; charset=UTF-8\" />\n" +
                "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
                "    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->\n" +
@@ -63,7 +67,7 @@ class HtmlTemplate:
                "}\n" +
                "\n" +
                "var dataHandel = function getDataResult(millers){\n" +
-               "  $.getJSON(\"http:121.199.33.137:8089/searchReport?millis=\"+millers,function(data){\n" +
+               "  $.getJSON(\"http://121.199.33.137:8089/searchReport?millis=\"+millers,function(data){\n" +
                "    var result = '';\n" +
                "    result+= '<table  class=\"table table-striped table-bordered table-hover table-condensed\">'\n" +
                "    result+= '<thead>'\n" +
@@ -77,7 +81,6 @@ class HtmlTemplate:
                "    result+= '<th width=80px>错误信息</th>'\n" +
                "    result+= '</tr>'\n" +
                "    result+= '</thead>'\n");
-        # // 这里需要替换
         sb += ("$.each(data.resultInfList,function(idx,item){\n" +
                # // "        if(idx==0){\n" +
                # // "          return true;\n" +
@@ -85,18 +88,22 @@ class HtmlTemplate:
                "        result+= '<tbody>'\n" +
                "        result+= '<tr>'\n" +
                "        result+= '<td>'+(idx+1)+'</td>'\n" +
-               # // "        result+= '<td>'+item.interfaceName+'</td>'\n" +
-               "        result+= '<td>'+item.test_case_name+'</td>'\n" +
-               "        if(item.inf_end==true){\n" +
+               "        result+= '<td>'+item.testCaseName+'</td>'\n" +
+               # "        result+= '<td>'+item.infEnd+'</td>'\n" +
+               "        if(item.infEnd==true){\n" +
                "          result+= '<td>Pass</td>'\n" +
-               "        }else if(item.inf_end==false){\n" +
+               "        }else if(item.infEnd==false){\n" +
                "          result+= '<td>Fail</td>'\n" +
                "        }\n" +
                # // "        // result+= '<td>'+item.infRequestHeader+'</td>'\n" +
                # // "        result+= '<td class=\"centerContentTd\">'+item.infRequestParam+'</td>'\n" +
                # // "        result+= '<td class=\"centerContentTd\">'+item.infReturnMsg+'</td>'\n" +
-               "        if(item.errorMsg !== undefined){\n" +
-               "          result+= '<td class=\"centerContentTd\">'+item.error_msg+'</td>'\n" +
+               "        if(item.infEnd == false){\n" +
+               "            if(item.errorMsg){\n" +
+               "                result+= '<td class=\"centerContentTd\">'+item.errorMsg+'</td>'\n" +
+               "        }else{\n" +
+               "          result+= '<td>你数据不对，把millis和testcaseName给蒋南强看看/td>'\n" +
+               "            }\n" +
                "        }\n" +
                "        result+= '</tr>'\n" +
                "        result+= '</tbody>'\n" +
@@ -126,8 +133,8 @@ class HtmlTemplate:
                "\t\t<thead>\n" +
                "\t\t\t<tr>\n" +
                "\t\t\t\t<th>#</th>\n" +
-               "\t\t\t\t<th>模块名称</th>\n" +
-               "\t\t\t\t<th>结果</th>\n" +
+               "\t\t\t\t<th>执行结果</th>\n" +
+               "\t\t\t\t<th>操作</th>\n" +
                "\t\t\t</tr>\n" +
                "\t\t</thead>\n" +
                "\t\t<tbody>");

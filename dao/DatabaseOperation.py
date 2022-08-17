@@ -72,8 +72,8 @@ class DatabaseOperation:
             self.connect.close()
         return fetchall
 
-
-if __name__ == '__main__':
-
-    operation = DatabaseOperation()
-    operation.searchReport("1642074778840")
+#
+# if __name__ == '__main__':
+#
+#     operation = DatabaseOperation()
+#     operation.searchReport("1642074778840")

@@ -1,3 +1,10 @@
+import os, sys
+
+root_path = os.path.abspath(__file__)
+root_path = '/'.join(root_path.split('/')[:-2])
+sys.path.append(root_path)
+
+
 from flask import request
 from aspect.ControllerAspect import ControllerAspect
 from config import ReadConfigFile, GlobalConfig
@@ -83,9 +90,9 @@ def updataEnvInfoConfig(envPrifx: str = None, phone=None):
 def searchReportByMillers():
     millis = request.args.get('millis')
     report = DatabaseOperation().searchReport(millis)
-    print(report)
     return ResponseUtils.responseModelAndView(report)
 
 
-flask.run()
+if __name__ =='__main__':
+   flask.run(host="127.0.0.1", port=5000, debug='False')
 
