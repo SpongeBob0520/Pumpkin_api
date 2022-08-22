@@ -50,3 +50,30 @@ class ActorCallApi:
         logger.info("开始调用" + str(urlParams.url))
         infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap, verify=False)
         return infReturn
+
+    @CallApiAspect.aroundHandle(CallApiAspect(),
+                                servletPath=ReadConfigFile.classNameAndFieldName('actor', 'actorFilmV3'),
+                                reauestType='GET')
+    def actorFilmV2(self, urlParams: UrlParams = None):
+        logger.info("开始调用" + str(urlParams.url))
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap,
+                                      verify=False)
+        return infReturn
+
+    @CallApiAspect.aroundHandle(CallApiAspect(),
+                                servletPath=ReadConfigFile.classNameAndFieldName('actor', 'relatedActorList'),
+                                reauestType='GET')
+    def actorFilmV2(self, urlParams: UrlParams = None):
+        logger.info("开始调用" + str(urlParams.url))
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap,
+                                      verify=False)
+        return infReturn
+
+    @CallApiAspect.aroundHandle(CallApiAspect(),
+                                servletPath=ReadConfigFile.classNameAndFieldName('actor', 'getActorDesc'),
+                                reauestType='GET')
+    def actorFilmV2(self, urlParams: UrlParams = None):
+        logger.info("开始调用" + str(urlParams.url))
+        infReturn = HttpUtils.httpGet(urlParams.url, urlParams, params=urlParams.get_param(), headers=urlParams.headMap,
+                                      verify=False)
+        return infReturn

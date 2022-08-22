@@ -10,8 +10,8 @@ class UserTestCase:
     @TestCaseAspect.testCaseListen
     def testAddFeedback(self):
         params = UrlParams()
-        p = {"platform": "1", "app_version": "5.1.9", "user_id":"4017434", "phone": "123456780987", "feedback_type": "1",
-             "content":"22222","imags":[]}
+        p = {"platform": "1", "app_version": "5.1.9", "user_id": "34427118", "phone": "13732491375", "feedback_type": "1",
+             "content": "22222", "imags": []}
         params.set_param(p)
         feedback = UserCallApi().addFeedback(params)
         JsonUtils.json_data_check(feedback, 'searchField')

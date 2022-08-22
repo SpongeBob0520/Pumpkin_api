@@ -63,9 +63,11 @@ def postMethod():
     userCase.testUserFanList()
     userCase.testUserPraiseStatus()
     userCase.testUserCollectionStatus()
+    # 放映厅相关
     hallCase = HallTestCase()
     hallCase.testCreatHall()
     hallCase.testDisMissHall()
+    #
     globleReport = GlobalConfig.getReportClassInfo()
     return ResponseUtils.reportToStrModelAndView(globleReport)
 

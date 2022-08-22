@@ -9,6 +9,8 @@ class HtmlTemplate:
         # 文件名
         # seedToDingtalk = send_Something_to_dingTalk()
         fileName = 'index_'+str(checkResponseResult.get_millis())+".html"
+        text = str(checkResponseResult.get_result())
+        # 获取报告执行结果
         # 项目根目录,这是原来的逻辑，吧html文件保存到项目地址下，但是这样不行，改成了nginx静态文件地址
         # path = JarProjectUtil.project_root_path()
         path = ReadConfigFile.classNameAndFieldName('htmlsavepath', 'savePath')
@@ -18,10 +20,12 @@ class HtmlTemplate:
         modulInfo = HtmlTemplate().initHtmlModul(checkResponseResult)
         # 组装地址
         address = path+fileName
+        sharePath = sharePath + fileName
         f = open(address, "a")
         f.write(modulInfo)
         f.close()
-        send_Something_to_dingTalk().seedText(sharePath+fileName)
+        # send_Something_to_dingTalk().sendActionCard(text, sharePath)
+        # send_Something_to_dingTalk().seedText(sharePath+fileName)
         return address
 
     def initHtmlModul(self, checkResponseResult: CheckResponseResult = None) -> str:
@@ -98,11 +102,11 @@ class HtmlTemplate:
                # // "        // result+= '<td>'+item.infRequestHeader+'</td>'\n" +
                # // "        result+= '<td class=\"centerContentTd\">'+item.infRequestParam+'</td>'\n" +
                # // "        result+= '<td class=\"centerContentTd\">'+item.infReturnMsg+'</td>'\n" +
-               "        if(item.infEnd == false){\n" +
-               "            if(item.errorMsg){\n" +
+               "        if(item.errorMsg){\n" +
+               "            if(item.infEnd == false){\n" +
                "                result+= '<td class=\"centerContentTd\">'+item.errorMsg+'</td>'\n" +
-               "        }else{\n" +
-               "          result+= '<td>你数据不对，把millis和testcaseName给蒋南强看看/td>'\n" +
+               "            }else{\n" +
+               "                result+= '<td>你数据不对，把millis和testcaseName给蒋南强看看</td>'\n" +
                "            }\n" +
                "        }\n" +
                "        result+= '</tr>'\n" +

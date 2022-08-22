@@ -27,19 +27,19 @@ class send_Something_to_dingTalk():
         url = "https://oapi.dingtalk.com/robot/send?access_token=" + str(self.token) + "&timestamp=" + str(timestamp) + "&sign=" + str(sign)
         return url
 
-    def sendActionCard(self, data_dic):
+    def sendActionCard(self, text, Html_url):
         self.url = self.signGet()
         data = {
             "msgtype": "actionCard",
             "actionCard":
                 {
-                    "title": "线上android打包情况",
-                    "text": "读万卷书，行万里路",
-                    "hideAvatar": "0",
-                    "btnOrientation": "0",
-                    "btns": data_dic,
+                    "title": "自动化接口测试结果",
+                    "text": str(text),
+                    "singleTitle": "点击查看详细测试报告",
+                    "singleURL": str(Html_url)
                 }
         }
+        print(data)
         res = requests.post(url=self.url, headers=self.headers, data=json.dumps(data))
         print(res.text)
 
@@ -56,6 +56,7 @@ class send_Something_to_dingTalk():
             },
             "msgtype": "text"
         }
+        print(data)
         res = requests.post(url=self.url, headers=self.headers, data=json.dumps(data))
         print(res.text)
 
