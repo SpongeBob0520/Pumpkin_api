@@ -1,5 +1,4 @@
 import json
-
 from CallApiLayer.ActorCallApi import ActorCallApi
 from aspect.TestCaseAspect import TestCaseAspect
 from bean.UrlParams import UrlParams
